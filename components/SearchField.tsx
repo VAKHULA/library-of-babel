@@ -40,8 +40,8 @@ export const SearchField = ({
 
   const matchesCount = getNumberOfPermutations(appConfig.characterSet[lang].length + 1, 3200 - search.length)
   const firstMatch = search(searchValue, appConfig.characterSet[lang])
-  const lastMatch = search(searchValue, appConfig.characterSet[lang].padEnd(3200, '.'))
-  const clearMatch = search(searchValue, appConfig.characterSet[lang].padEnd(3200, ' '))
+  const lastMatch = search(searchValue.padEnd(3200, '.'), appConfig.characterSet[lang])
+  const clearMatch = search(searchValue.padEnd(3200, ' '), appConfig.characterSet[lang])
 
   return (
     <div className='search-field'>

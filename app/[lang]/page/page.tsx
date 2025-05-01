@@ -15,12 +15,12 @@ type SearchParams = Promise<{
   page: string | undefined
   search: string | undefined
 }>
-
+const randomPage = getRandomBigInt(6000).toString()
 export default async function Page(props: {
   params: Params,
   searchParams: SearchParams
 }) {
-  const { page, search = '' } = await props.searchParams
+  const { page } = await props.searchParams
   const { lang } = await props.params
 
   if (!page) {
@@ -36,7 +36,7 @@ export default async function Page(props: {
         <Link href={`/${lang}`} role='button' className="outline">
           home
         </Link>
-        <Link role='button' className='outline' href={`/${lang}/page?page=${getRandomBigInt(6000).toString()}`}>
+        <Link role='button' className='outline' href={`/${lang}/page?page=${randomPage}`}>
           random page
         </Link>
       </Header>
@@ -48,7 +48,7 @@ export default async function Page(props: {
           className='page-preview'
           dangerouslySetInnerHTML={{
             __html: generatePage(page, appConfig.characterSet[lang], appConfig.pageLength)
-              .replaceAll(search, `<mark>${search}</mark>`)
+              // .replaceAll(search, `<mark>${search}</mark>`)
               .replaceAll(' ', '&nbsp;')
               // .replace(/ /g, '<span class="_m _spc">&middot;</span>')
               // .replaceAll(' ', '&#32;')

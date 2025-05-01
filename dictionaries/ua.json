@@ -1,14 +1,14 @@
 {
-    "title": "Book of Babel (спрощена версія сайту Library of Babel)",
-        "search_button": "Шукати",
-    "search_placeholder": "текст...",
-        "search_description": "Введіть до  $count символів,<br/>Текст може містити лише малі літери пробіли коми та крапки",
-         "pager_title": "або перейдіть на сторінку",
-         "pager_placeholder": "or go to page",
+  "title": "Book of Babel (спрощена версія сайту Library of Babel)",
+  "search_button": "Шукати",
+  "search_placeholder": "текст...",
+  "search_description": "Введіть до  $count символів,<br/>Текст може містити лише малі літери пробіли коми та крапки",
+  "pager_title": "або перейдіть на сторінку",
+  "pager_placeholder": "or go to page",
   "pagerbutton": "or go to page",
   "rundom page button": "",
   "About title": "",
   "about text": "",
   "home button": "",
   "go": ""
-  }
+}

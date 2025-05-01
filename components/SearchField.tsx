@@ -1,45 +1,116 @@
 'use client'
-import TextareaAutosize from 'react-textarea-autosize';
-import { useRouter } from 'next/navigation'
-import { useState } from 'react';
 
+import React, { useState } from 'react'
+// import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import TextareaAutosize from 'react-textarea-autosize'
 
-export const SearchField = ({ initialValue = '', description }) => {
-  const router = useRouter()
-  const [search, setSearch] = useState(initialValue)
+import { clearString } from '@/utils/clearString'
+import { getNumberOfPermutations } from '@/utils/getNumberOfPermutations'
+import { getRandomBigInt } from '@/utils/getRandomBigInt'
+import { formatBigIntToShortHTML } from '@/utils/formatBigIntToShortHTML'
+import { search } from '@/utils/converter'
+import { appConfig } from '@/appConfig'
+
+export const SearchField = ({
+  initialValue = '',
+  description,
+  // buttonText,
+  placeholder,
+  lang
+}: {
+  initialValue: string
+  description: React.ReactNode
+  // buttonText: string
+  placeholder: string
+  lang: 'en' | 'ua'
+}) => {
+  // const router = useRouter()
+  const [searchValue, setSearch] = useState<string>(initialValue)
 
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (search) {
-      router.push(`/search/?search=${encodeURIComponent(search)}`)
-    } else {
-      router.push(`/`)
-    }
+    // if (search) {
+    //   const {page} = machine.search(search)
+    //   router.push(`/page?page=${page}`) // &search=${encodeURIComponent(search)}
+    // } else {
+    //   router.push(`/`)
+    // }
   }
 
+  const matchesCount = getNumberOfPermutations(appConfig.characterSet[lang].length + 1, 3200 - search.length)
+  const firstMatch = search(searchValue, appConfig.characterSet[lang])
+  const lastMatch = search(searchValue, appConfig.characterSet[lang].padEnd(3200, '.'))
+  const clearMatch = search(searchValue, appConfig.characterSet[lang].padEnd(3200, ' '))
+
   return (
-    <article className='container search-field'>
+    <div className='search-field'>
       <form onSubmit={handleSubmit}>
         <TextareaAutosize
-        name="search"
-        placeholder="Search"
-        minRows={1}
-        value={search}
-        onChange={(e)=>{
-          function removeChars(validChars, inputString) {
-            var regex = new RegExp('[^' + validChars + ']', 'g');
-            return inputString.replace(regex, '');
-        }
-            setSearch(removeChars(`абвгґдеєжзиіїйклмнопрстуфхцчшщьюя ,.\n`,e.target.value.toLowerCase()))
-        }}
+          name="search"
+          placeholder={placeholder}
+          minRows={3}
+          value={searchValue}
+          onChange={(e) => {
+            const value = clearString(appConfig.characterSet[lang], e.target.value.toLowerCase()).slice(0, 3201)
+            setSearch(value)
+          }}
         />
         <div className='search-field__buttons'>
           <p>
-          {description}
+            {description}
           </p>
-          <input type="submit" value="Search" />
+          {/* <input type="submit" value={buttonText} /> */}
         </div>
       </form>
-    </article>
+      <hr />
+      <p>
+        found <span dangerouslySetInnerHTML={{ __html: formatBigIntToShortHTML(matchesCount) }}></span> pages
+      </p>
+      <div className='links_block'>
+        <Link
+          role='button'
+          className='outline'
+          href={`/${lang}/page?page=0`}
+        >
+          first page
+        </Link>
+        <Link role='button' className='outline' href={`/${lang}/page?page=${getRandomBigInt(6000).toString()}`}>
+          random page
+        </Link>
+        <Link
+          role='button'
+          className='outline'
+          href={`/${lang}/page?page=${getNumberOfPermutations(appConfig.characterSet[lang].length, 3200) - BigInt(1)}`}
+        >
+          last page
+        </Link>
+        {searchValue &&
+          <>
+            <Link
+              role='button'
+              className='outline'
+              href={`/${lang}/page?page=${firstMatch}`}
+            >
+              first match
+            </Link>
+            <Link
+              role='button'
+              className='outline'
+              href={`/${lang}/page?page=${lastMatch}`}
+            >
+              lastMatch
+            </Link>
+            <Link
+              role='button'
+              className='outline'
+              href={`/${lang}/page?page=${clearMatch}`}
+            >
+              clearMatch
+            </Link>
+          </>
+        }
+      </div>
+    </div>
   )
 }

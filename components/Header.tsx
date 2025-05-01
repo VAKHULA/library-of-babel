@@ -1,9 +1,9 @@
-export const Header = ({children}) => {
-return (
-<header >
+import React from "react"
 
-    {children}
- 
-</header>
-)
+export const Header = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <header className="header">
+      {children}
+    </header>
+  )
 }

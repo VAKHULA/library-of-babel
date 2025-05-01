@@ -1,0 +1,14 @@
+{
+  "title": "Book of Babel (simplified Library of Babel site)",
+  "search_button": "Search",
+  "search_placeholder": "text ...",
+  "search_description": "Enter up to $count characters,<br/>Text can contain only lower-case letters, space, comma, or period.",
+  "pager_title": "or go to page",
+  "pager_placeholder": "or go to page",
+  "pagerbutton": "or go to page",
+  "rundom page button": "",
+  "About title": "",
+  "about text": "",
+  "home button": "",
+  "go": ""
+  }

@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 
 import { Header } from '@/components/Header'
 import { Paginator } from '@/components/Paginator'
-import { getRandomBigInt } from '@/utils/getRandomBigInt'
+import { RandomPageButton } from '@/components/RandomPageButton'
 import { generatePage } from '@/utils/converter'
 import { appConfig } from "@/appConfig"
 
@@ -15,7 +15,7 @@ type SearchParams = Promise<{
   page: string | undefined
   search: string | undefined
 }>
-const randomPage = getRandomBigInt(6000).toString()
+
 export default async function Page(props: {
   params: Params,
   searchParams: SearchParams
@@ -36,9 +36,7 @@ export default async function Page(props: {
         <Link href={`/${lang}`} role='button' className="outline">
           home
         </Link>
-        <Link role='button' className='outline' href={`/${lang}/page?page=${randomPage}`}>
-          random page
-        </Link>
+        <RandomPageButton lang={lang} />
       </Header>
       <article>
         <header className='page-header'>

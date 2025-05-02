@@ -4,10 +4,9 @@ import React, { useState } from 'react'
 // import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import TextareaAutosize from 'react-textarea-autosize'
-
+import { RandomPageButton } from '@/components/RandomPageButton'
 import { clearString } from '@/utils/clearString'
 import { getNumberOfPermutations } from '@/utils/getNumberOfPermutations'
-import { getRandomBigInt } from '@/utils/getRandomBigInt'
 import { formatBigIntToShortHTML } from '@/utils/formatBigIntToShortHTML'
 import { search } from '@/utils/converter'
 import { appConfig } from '@/appConfig'
@@ -73,9 +72,7 @@ export const SearchField = ({
         >
           first page
         </Link>
-        <Link role='button' className='outline' href={`/${lang}/page?page=${getRandomBigInt(6000).toString()}`}>
-          random page
-        </Link>
+        <RandomPageButton lang={lang} />
         <Link
           role='button'
           className='outline'

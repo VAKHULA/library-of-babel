@@ -24,5 +24,5 @@ export const formatBigIntToShortHTML = (value: bigint):string => {
         mantissa += '.' + mantissaDigits.substring( 1 )
     }
   
-    return `<span class='formated_big_int'>${isNegative ? '-' : ''}${mantissa.slice(0,3)} <sup>${exp.toString()}</sup></span>`
+    return `<span class='formated_big_int'>${isNegative ? '-' : ''}${mantissa.slice(0,3)} * 10<sup>${exp.toString()}</sup></span>`
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import "@picocss/pico/css/pico.blue.min.css"
-
+import { Locale } from "@/i18n-config"
 import "./globals.scss";
 
 export const metadata: Metadata = {
@@ -13,8 +13,9 @@ export default async function RootLayout({
   params
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ lang: Locale }>
 }>) {
-  const {lang} = await params
+  const { lang } = await params
   return (
     <html lang={lang}>
       <head>

@@ -1,5 +1,6 @@
 import { Header } from '@/components/Header'
 import { SearchField } from '@/components/SearchField'
+import { GoToPageInput } from '@/components/GoToPageInput'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { LangToggle } from '@/components/LangToggle'
 import { appConfig } from "@/appConfig"
@@ -40,12 +41,7 @@ export default async function HomePage(props: {
         <header>
           {dictionary.pager_title}
         </header>
-        <form action={`/${lang}/page`}>
-          <fieldset role="group">
-            <input name="page" type="number" placeholder="Enter page" />
-            <input type="submit" value="Go" className='outline' />
-          </fieldset>
-        </form>
+        <GoToPageInput lang={lang} />
       </article>
       <article>
         <header>

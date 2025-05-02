@@ -40,7 +40,7 @@ export default async function HomePage(props: {
         <header>
           {dictionary.pager_title}
         </header>
-        <form action='/page'>
+        <form action={`/${lang}/page`}>
           <fieldset role="group">
             <input name="page" type="number" placeholder="Enter page" />
             <input type="submit" value="Go" className='outline' />

@@ -24,7 +24,6 @@ export default async function HomePage(props: {
           <h1>{dictionary.title}</h1>
         </header>
         <SearchField
-          // buttonText={dictionary.search_button}
           placeholder={dictionary.search_placeholder}
           initialValue={''}
           description={(
@@ -58,10 +57,9 @@ export default async function HomePage(props: {
           Book contains all possible pages of 3200 characters so any text page that is written and will be ever written already exists within this book like song, poem, news and even your conversation with ChatGPT.<br/>
           Inspired by <a href='https://libraryofbabel.info/' target='_blanc'>Library of Babel</a>.
         </p>
-        {/* <p>Book contains ≈ 1.47 <sup>4980</sup> pages</p> */}
-        {/* <footer>
-          code on github
-        </footer> */}
+        <footer>
+          <a href='https://github.com/VAKHULA/library-of-babel' title='Code on Github'>Code on Github</a>
+        </footer>
       </article>
       </div>
     </main>

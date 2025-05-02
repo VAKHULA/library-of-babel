@@ -15,13 +15,11 @@ import { appConfig } from '@/appConfig'
 export const SearchField = ({
   initialValue = '',
   description,
-  // buttonText,
   placeholder,
   lang
 }: {
   initialValue: string
   description: React.ReactNode
-  // buttonText: string
   placeholder: string
   lang: 'en' | 'ua'
 }) => {

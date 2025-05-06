@@ -1,14 +1,19 @@
 {
   "title": "Book of Babel (спрощена версія сайту Library of Babel)",
   "search_button": "Шукати",
-  "search_placeholder": "текст...",
+  "search_placeholder": "текст ...",
   "search_description": "Введіть до  $count символів,<br/>Текст може містити лише малі літери пробіли коми та крапки",
   "pager_title": "або перейдіть на сторінку",
   "pager_placeholder": "or go to page",
-  "pagerbutton": "or go to page",
   "rundom page button": "",
-  "About title": "",
-  "about text": "",
-  "home button": "",
-  "go": ""
+  "about_title": "Про цей сайт",
+  "about_text": "Цей сайт є спрощеним відтворенням сайту <a href='https://libraryofbabel.info/' target='_blanc'>Library of Babel</a> який є відтворенням короткого оповідання <a href='https://en.wikipedia.org/wiki/The_Library_of_Babel' target='_blanc'>The Library of Babel by Jorge Luis Borges.</a><br/>Книжка містить всі  можливі комбінації (перестановоки з повторами) з 3200 символів на сторінку. Тож книга містить всі можливі текстові сторінки які були чи будуть написані (та навіть ті які ніколи не будуть написані) наприклад пісні, оповідання, новини та навіть твоє спілкування з ChatGPT.<br/>Inspired by <a href='https://libraryofbabel.info/' target='_blanc'>Library of Babel</a>.",
+  "home_button": "На головну",
+  "go_button": "Перейти",
+  "rundom_page_button": "Випадкова сторінка",
+  "first_page_button": "Перша сторінка",
+  "last_page_button": "Остання сторінка",
+  "first_match_button": "Перший збіг",
+  "last_match_button": "Останній збіг",
+  "clear_match_button": "Чистий збіг"
 }

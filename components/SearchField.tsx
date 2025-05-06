@@ -15,11 +15,23 @@ export const SearchField = ({
   initialValue = '',
   description,
   placeholder,
+  randomPageLabel,
+  firstPageButtonLabel,
+  lastPageButtonLabel,
+  firstMatchButtonLabel,
+  lastMatchButtonLabel,
+  clearMatchButtonLabel,
   lang
 }: {
   initialValue: string
   description: React.ReactNode
   placeholder: string
+  randomPageLabel: string
+  firstPageButtonLabel: string
+  lastPageButtonLabel: string
+  firstMatchButtonLabel: string
+  lastMatchButtonLabel: string
+  clearMatchButtonLabel: string
   lang: 'en' | 'ua'
 }) => {
   // const router = useRouter()
@@ -70,15 +82,15 @@ export const SearchField = ({
           className='outline'
           href={`/${lang}/page?page=0`}
         >
-          first page
+          {firstPageButtonLabel}
         </Link>
-        <RandomPageButton lang={lang} />
+        <RandomPageButton lang={lang} randomPageLabel={randomPageLabel} />
         <Link
           role='button'
           className='outline'
           href={`/${lang}/page?page=${getNumberOfPermutations(appConfig.characterSet[lang].length, 3200) - BigInt(1)}`}
         >
-          last page
+           {lastPageButtonLabel}
         </Link>
         {searchValue &&
           <>
@@ -87,21 +99,21 @@ export const SearchField = ({
               className='outline'
               href={`/${lang}/page?page=${firstMatch}`}
             >
-              first match
+               {firstMatchButtonLabel}
             </Link>
             <Link
               role='button'
               className='outline'
               href={`/${lang}/page?page=${lastMatch}`}
             >
-              lastMatch
+              {lastMatchButtonLabel}
             </Link>
             <Link
               role='button'
               className='outline'
               href={`/${lang}/page?page=${clearMatch}`}
             >
-              clearMatch
+              {clearMatchButtonLabel}
             </Link>
           </>
         }

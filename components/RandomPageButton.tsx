@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 import { getRandomBigInt } from '@/utils/getRandomBigInt'
 
-export const RandomPageButton = ({lang}: {lang: string}) => {
+export const RandomPageButton = ({lang, randomPageLabel }: {lang: string, randomPageLabel: string }) => {
   const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export const RandomPageButton = ({lang}: {lang: string}) => {
 
   return (
     <Link role='button' className='outline' href={isClient ? `/${lang}/page?page=${ getRandomBigInt(6000).toString()}` : ''}>
-      Random Page
+      {randomPageLabel}
     </Link>
   )
 }

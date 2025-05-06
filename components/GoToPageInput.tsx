@@ -5,7 +5,7 @@ import TextareaAutosize from 'react-textarea-autosize'
 
 import { clearString } from '@/utils/clearString'
 
-export const GoToPageInput = ({ lang }: { lang: string }) => {
+export const GoToPageInput = ({ lang, goButtonLabel }: { lang: string, goButtonLabel: string }) => {
   const [page, setPage] = useState<string>('0')
   return (
     <form action={`/${lang}/page`}>
@@ -20,7 +20,7 @@ export const GoToPageInput = ({ lang }: { lang: string }) => {
         }}
       />
       <div className='search-field__buttons'>
-        <input type="submit" value='Go' />
+        <input type="submit" className='outline' value={goButtonLabel} />
       </div>
     </form>
   )

@@ -5,6 +5,7 @@ import { Header } from '@/components/Header'
 import { Paginator } from '@/components/Paginator'
 import { RandomPageButton } from '@/components/RandomPageButton'
 import { generatePage } from '@/utils/converter'
+import { getDictionary } from "@/get-dictionary"
 import { appConfig } from "@/appConfig"
 
 type Params = Promise<{
@@ -22,6 +23,7 @@ export default async function Page(props: {
 }) {
   const { page } = await props.searchParams
   const { lang } = await props.params
+  const dictionary = await getDictionary(lang)
 
   if (!page) {
     notFound()
@@ -34,13 +36,13 @@ export default async function Page(props: {
       <div className='container'>
       <Header>
         <Link href={`/${lang}`} role='button' className="outline">
-          home
+          {dictionary.home_button}
         </Link>
-        <RandomPageButton lang={lang} />
+        <RandomPageButton lang={lang} randomPageLabel={dictionary.rundom_page_button} />
       </Header>
       <article>
         <header className='page-header'>
-          <Paginator page={pageNum} lang={lang} />
+          <Paginator page={pageNum} lang={lang} goButtonLabel={dictionary.go_button} />
         </header>
         <p
           className='page-preview'
@@ -54,7 +56,7 @@ export default async function Page(props: {
           }}
         />
         <footer className='page-footer'>
-          <Paginator page={pageNum} lang={lang} />
+          <Paginator page={pageNum} lang={lang} goButtonLabel={dictionary.go_button} />
         </footer>
       </article>
       </div>

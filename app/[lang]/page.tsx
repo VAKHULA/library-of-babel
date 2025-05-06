@@ -27,6 +27,12 @@ export default async function HomePage(props: {
         <SearchField
           placeholder={dictionary.search_placeholder}
           initialValue={''}
+          randomPageLabel={dictionary.rundom_page_button}
+          firstPageButtonLabel={dictionary.first_page_button}
+          lastPageButtonLabel={dictionary.last_page_button}
+          firstMatchButtonLabel={dictionary.first_match_button}
+          lastMatchButtonLabel={dictionary.last_match_button}
+          clearMatchButtonLabel={dictionary.clear_match_button}
           description={(
             <span
               dangerouslySetInnerHTML={{
@@ -41,18 +47,17 @@ export default async function HomePage(props: {
         <header>
           {dictionary.pager_title}
         </header>
-        <GoToPageInput lang={lang} />
+        <GoToPageInput lang={lang} goButtonLabel={dictionary.go_button} />
       </article>
       <article>
         <header>
-          About this site
+          {dictionary.about_title}
         </header>
-        <p>
-          The site itself is a simplified recreation of <a href='https://libraryofbabel.info/' target='_blanc'>Library of Babel</a> which is a recreation of a short story <a href='https://en.wikipedia.org/wiki/The_Library_of_Babel' target='_blanc'>The Library of Babel by Jorge Luis Borges.</a><br/>
-          The essence of this book is that it contains every possible combination (permutation) of the characters in a language.
-          Book contains all possible pages of 3200 characters so any text page that is written and will be ever written already exists within this book like song, poem, news and even your conversation with ChatGPT.<br/>
-          Inspired by <a href='https://libraryofbabel.info/' target='_blanc'>Library of Babel</a>.
-        </p>
+        <p
+          dangerouslySetInnerHTML={{
+            __html: dictionary.about_text
+          }}
+        />
         <footer>
           <a href='https://github.com/VAKHULA/library-of-babel' title='Code on Github'>Code on Github</a>
         </footer>

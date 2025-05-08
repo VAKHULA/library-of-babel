@@ -1,9 +1,10 @@
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { redirect } from 'next/navigation';
 
 import { Header } from '@/components/Header';
 import { Paginator } from '@/components/Paginator';
 import { RandomPageButton } from '@/components/RandomPageButton';
+import { getNumberOfPermutations } from '@/utils/getNumberOfPermutations';
 import { generatePage } from '@/utils/converter';
 import { getDictionary } from '@/i18n/get-dictionary';
 import { appConfig } from '@/app/[lang]/appConfig';
@@ -21,15 +22,33 @@ export default async function Page(props: {
   params: Params;
   searchParams: SearchParams;
 }) {
-  const { page } = await props.searchParams;
+  const { page = '0', search = '' } = await props.searchParams;
   const { lang } = await props.params;
   const dictionary = await getDictionary(lang);
+  const pageNum = BigInt(page);
+  const maxPageNum =
+    getNumberOfPermutations(
+      appConfig.characterSet[lang].length,
+      appConfig.pageLength,
+    ) - BigInt(1);
 
-  if (!page) {
-    notFound();
+  if (pageNum > maxPageNum) {
+    redirect(`/${lang}/page?page=${maxPageNum}`);
+  } else if (pageNum < BigInt(0)) {
+    redirect(`/${lang}/page?page=0`);
   }
 
-  const pageNum = BigInt(page);
+  let pageText = generatePage(
+    page,
+    appConfig.characterSet[lang],
+    appConfig.pageLength,
+  );
+
+  if (search) {
+    pageText = pageText.replaceAll(search, `<mark>${search}</mark>`);
+  }
+
+  pageText = pageText.replaceAll(' ', '&nbsp;');
 
   return (
     <main>
@@ -54,16 +73,7 @@ export default async function Page(props: {
           <p
             className='page-preview'
             dangerouslySetInnerHTML={{
-              __html: generatePage(
-                page,
-                appConfig.characterSet[lang],
-                appConfig.pageLength,
-              )
-                // .replaceAll(search, `<mark>${search}</mark>`)
-                .replaceAll(' ', '&nbsp;'),
-              // .replace(/ /g, '<span class="_m _spc">&middot;</span>')
-              // .replaceAll(' ', '&#32;')
-              // .replaceAll('\n', '<br/>')
+              __html: pageText,
             }}
           />
           <footer className='page-footer'>

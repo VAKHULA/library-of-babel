@@ -36,7 +36,10 @@ export default async function HomePage(props: {
             description={
               <span
                 dangerouslySetInnerHTML={{
-                  __html: `${dictionary.search_description.replace('$count', appConfig.pageLength.toString())}<br/>(<ins>${appConfig.characterSet[lang]}</ins>)`,
+                  __html: `
+                    ${dictionary.search_description.replace('$count', appConfig.pageLength.toString())}<br/>
+                    (<ins>${appConfig.characterSet[lang]}</ins>)
+                  `,
                 }}
               />
             }

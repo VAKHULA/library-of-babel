@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-// import { useRouter } from 'next/navigation'
 import Link from 'next/link';
 import TextareaAutosize from 'react-textarea-autosize';
+
 import { RandomPageButton } from '@/components/RandomPageButton';
 import { clearString } from '@/utils/clearString';
 import { getNumberOfPermutations } from '@/utils/getNumberOfPermutations';
@@ -34,17 +34,10 @@ export const SearchField = ({
   clearMatchButtonLabel: string;
   lang: 'en' | 'ua';
 }) => {
-  // const router = useRouter()
   const [searchValue, setSearch] = useState<string>(initialValue);
 
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // if (search) {
-    //   const {page} = machine.search(search)
-    //   router.push(`/page?page=${page}`) // &search=${encodeURIComponent(search)}
-    // } else {
-    //   router.push(`/`)
-    // }
   };
 
   const matchesCount = searchValue
@@ -58,11 +51,11 @@ export const SearchField = ({
       );
   const firstMatch = search(searchValue, appConfig.characterSet[lang]);
   const lastMatch = search(
-    searchValue.padEnd(3200, '.'),
+    searchValue.padEnd(appConfig.pageLength, '.'),
     appConfig.characterSet[lang],
   );
   const clearMatch = search(
-    searchValue.padEnd(3200, ' '),
+    searchValue.padEnd(appConfig.pageLength, ' '),
     appConfig.characterSet[lang],
   );
 
@@ -78,13 +71,12 @@ export const SearchField = ({
             const value = clearString(
               appConfig.characterSet[lang],
               e.target.value.toLowerCase(),
-            ).slice(0, 3201);
+            ).slice(0, appConfig.pageLength + 1);
             setSearch(value);
           }}
         />
         <div className='search-field__buttons'>
           <p>{description}</p>
-          {/* <input type="submit" value={buttonText} /> */}
         </div>
       </form>
       <hr />
@@ -105,7 +97,7 @@ export const SearchField = ({
         <Link
           role='button'
           className='outline'
-          href={`/${lang}/page?page=${getNumberOfPermutations(appConfig.characterSet[lang].length, 3200) - BigInt(1)}`}
+          href={`/${lang}/page?page=${getNumberOfPermutations(appConfig.characterSet[lang].length, appConfig.pageLength) - BigInt(1)}`}
         >
           {lastPageButtonLabel}
         </Link>
@@ -114,21 +106,21 @@ export const SearchField = ({
             <Link
               role='button'
               className='outline'
-              href={`/${lang}/page?page=${firstMatch}`}
+              href={`/${lang}/page?page=${firstMatch}&search=${encodeURIComponent(searchValue)}`}
             >
               {firstMatchButtonLabel}
             </Link>
             <Link
               role='button'
               className='outline'
-              href={`/${lang}/page?page=${lastMatch}`}
+              href={`/${lang}/page?page=${lastMatch}&search=${encodeURIComponent(searchValue)}`}
             >
               {lastMatchButtonLabel}
             </Link>
             <Link
               role='button'
               className='outline'
-              href={`/${lang}/page?page=${clearMatch}`}
+              href={`/${lang}/page?page=${clearMatch}&search=${encodeURIComponent(searchValue)}`}
             >
               {clearMatchButtonLabel}
             </Link>

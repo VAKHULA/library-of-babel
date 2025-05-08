@@ -17,7 +17,7 @@ export const GoToPageInput = ({
     <form action={`/${lang}/page`}>
       <TextareaAutosize
         name='page'
-        placeholder='0'
+        placeholder='123'
         minRows={1}
         value={page}
         onChange={(e) => {

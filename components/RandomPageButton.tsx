@@ -23,7 +23,7 @@ export const RandomPageButton = ({
       role='button'
       className='outline'
       href={
-        isClient ? `/${lang}/page?page=${getRandomBigInt(6000).toString()}` : ''
+        isClient ? `/${lang}/page?page=${getRandomBigInt(4679).toString()}` : ''
       }
     >
       {randomPageLabel}

@@ -4,38 +4,22 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import TextareaAutosize from 'react-textarea-autosize';
 
-import { RandomPageButton } from '@/components/RandomPageButton';
 import { clearString } from '@/utils/clearString';
 import { getNumberOfPermutations } from '@/utils/getNumberOfPermutations';
 import { formatBigIntToShortHTML } from '@/utils/formatBigIntToShortHTML';
 import { search } from '@/utils/converter';
 import { appConfig } from '@/app/[lang]/appConfig';
+import { i18n } from '@/i18n/i18n';
 
 export const SearchField = ({
   initialValue = '',
-  description,
-  placeholder,
-  randomPageLabel,
-  firstPageButtonLabel,
-  lastPageButtonLabel,
-  firstMatchButtonLabel,
-  lastMatchButtonLabel,
-  clearMatchButtonLabel,
   lang,
 }: {
   initialValue: string;
-  description: React.ReactNode;
-  placeholder: string;
-  randomPageLabel: string;
-  firstPageButtonLabel: string;
-  lastPageButtonLabel: string;
-  firstMatchButtonLabel: string;
-  lastMatchButtonLabel: string;
-  clearMatchButtonLabel: string;
   lang: 'en' | 'ua';
 }) => {
   const [searchValue, setSearch] = useState<string>(initialValue);
-
+  console.log(appConfig.pageLength - searchValue.length);
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
@@ -64,68 +48,70 @@ export const SearchField = ({
       <form onSubmit={handleSubmit}>
         <TextareaAutosize
           name='search'
-          placeholder={placeholder}
+          placeholder={i18n.t('search_placeholder', {}, lang)}
           minRows={3}
           value={searchValue}
           onChange={(e) => {
             const value = clearString(
               appConfig.characterSet[lang],
               e.target.value.toLowerCase(),
-            ).slice(0, appConfig.pageLength + 1);
+            ).slice(0, appConfig.pageLength);
             setSearch(value);
           }}
         />
         <div className='search-field__buttons'>
-          <p>{description}</p>
+          <p>
+            <span
+              dangerouslySetInnerHTML={{
+                __html: `
+                  ${i18n.t('search_description', { text: appConfig.pageLength.toString() }, lang)}<br/>
+                  (<ins>${appConfig.characterSet[lang]}</ins>)
+                `,
+              }}
+            />
+          </p>
         </div>
       </form>
       <hr />
-      <p>
-        found{' '}
-        <span
-          dangerouslySetInnerHTML={{
-            __html: formatBigIntToShortHTML(matchesCount),
-          }}
-        ></span>{' '}
-        pages
-      </p>
+      <p
+        dangerouslySetInnerHTML={{
+          __html: i18n.t(
+            'found_pages',
+            { text: formatBigIntToShortHTML(matchesCount) },
+            lang,
+          ),
+        }}
+      />
       <div className='links_block'>
-        <Link role='button' className='outline' href={`/${lang}/page?page=0`}>
-          {firstPageButtonLabel}
-        </Link>
-        <RandomPageButton lang={lang} randomPageLabel={randomPageLabel} />
         <Link
           role='button'
-          className='outline'
-          href={`/${lang}/page?page=${getNumberOfPermutations(appConfig.characterSet[lang].length, appConfig.pageLength) - BigInt(1)}`}
+          className={searchValue ? `outline` : `outline secondary`}
+          href={searchValue ? `/${lang}/page?page=${firstMatch}` : ''}
         >
-          {lastPageButtonLabel}
+          {i18n.t('first_match_button', {}, lang)}
         </Link>
-        {searchValue && (
-          <>
-            <Link
-              role='button'
-              className='outline'
-              href={`/${lang}/page?page=${firstMatch}&search=${encodeURIComponent(searchValue)}`}
-            >
-              {firstMatchButtonLabel}
-            </Link>
-            <Link
-              role='button'
-              className='outline'
-              href={`/${lang}/page?page=${lastMatch}&search=${encodeURIComponent(searchValue)}`}
-            >
-              {lastMatchButtonLabel}
-            </Link>
-            <Link
-              role='button'
-              className='outline'
-              href={`/${lang}/page?page=${clearMatch}&search=${encodeURIComponent(searchValue)}`}
-            >
-              {clearMatchButtonLabel}
-            </Link>
-          </>
-        )}
+        <Link
+          role='button'
+          className={searchValue ? `outline` : `outline secondary`}
+          href={
+            searchValue
+              ? `/${lang}/page?page=${lastMatch}&search=${encodeURIComponent(searchValue)}`
+              : ''
+          }
+        >
+          {i18n.t('last_match_button', {}, lang)}
+        </Link>
+        <Link
+          role='button'
+          className={searchValue ? `outline` : `outline secondary`}
+          href={
+            searchValue
+              ? `/${lang}/page?page=${clearMatch}&search=${encodeURIComponent(searchValue)}`
+              : ''
+          }
+        >
+          {i18n.t('clear_match_button', {}, lang)}
+        </Link>
       </div>
     </div>
   );

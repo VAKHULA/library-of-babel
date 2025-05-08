@@ -6,8 +6,8 @@ import { Paginator } from '@/components/Paginator';
 import { RandomPageButton } from '@/components/RandomPageButton';
 import { getNumberOfPermutations } from '@/utils/getNumberOfPermutations';
 import { generatePage } from '@/utils/converter';
-import { getDictionary } from '@/i18n/get-dictionary';
 import { appConfig } from '@/app/[lang]/appConfig';
+import { i18n } from '@/i18n/i18n';
 
 type Params = Promise<{
   lang: 'en' | 'ua';
@@ -24,7 +24,6 @@ export default async function Page(props: {
 }) {
   const { page = '0', search = '' } = await props.searchParams;
   const { lang } = await props.params;
-  const dictionary = await getDictionary(lang);
   const pageNum = BigInt(page);
   const maxPageNum =
     getNumberOfPermutations(
@@ -55,11 +54,11 @@ export default async function Page(props: {
       <div className='container'>
         <Header>
           <Link href={`/${lang}`} role='button' className='outline'>
-            {dictionary.home_button}
+            {i18n.t('home_button', {}, lang)}
           </Link>
           <RandomPageButton
             lang={lang}
-            randomPageLabel={dictionary.rundom_page_button}
+            randomPageLabel={i18n.t('rundom_page_button', {}, lang)}
           />
         </Header>
         <article>
@@ -67,7 +66,7 @@ export default async function Page(props: {
             <Paginator
               page={pageNum}
               lang={lang}
-              goButtonLabel={dictionary.go_button}
+              goButtonLabel={i18n.t('go_button', {}, lang)}
             />
           </header>
           <p
@@ -80,7 +79,7 @@ export default async function Page(props: {
             <Paginator
               page={pageNum}
               lang={lang}
-              goButtonLabel={dictionary.go_button}
+              goButtonLabel={i18n.t('go_button', {}, lang)}
             />
           </footer>
         </article>

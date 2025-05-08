@@ -2,7 +2,7 @@
   "title": "Book of Babel (simplified Library of Babel site)",
   "search_button": "Search",
   "search_placeholder": "text ...",
-  "search_description": "Enter up to $count characters,<br/>Text can contain only lower-case letters, spaces, commas, or periods",
+  "search_description": "Enter up to $text characters,<br/>Text can contain only lower-case letters, spaces, commas, or periods",
   "pager_title": "or go to page",
   "pager_placeholder": "or go to page",
   "about_title": "About this site",
@@ -10,9 +10,11 @@
   "home_button": "Home",
   "go_button": "Go",
   "rundom_page_button": "Go to random page",
-  "first_page_button": "Go to first page",
-  "last_page_button": "Go to last page",
+  "first_page_button": "Go to first page of book",
+  "last_page_button": "Go to last page of book",
   "first_match_button": "First match",
   "last_match_button": "Last match",
-  "clear_match_button": "Clear match"
+  "clear_match_button": "Clear match",
+  "found_pages": "found $text pages",
+  "some_links": "Some links"
 }

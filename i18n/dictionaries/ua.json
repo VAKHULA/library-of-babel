@@ -2,7 +2,7 @@
   "title": "Book of Babel (спрощена версія сайту Library of Babel)",
   "search_button": "Шукати",
   "search_placeholder": "текст ...",
-  "search_description": "Введіть до  $count символів,<br/>Текст може містити лише малі літери пробіли коми та крапки",
+  "search_description": "Введіть до  $text символів,<br/>Текст може містити лише малі літери пробіли коми та крапки",
   "pager_title": "або перейдіть на сторінку",
   "pager_placeholder": "or go to page",
   "about_title": "Про цей сайт",
@@ -10,9 +10,11 @@
   "home_button": "На головну",
   "go_button": "Перейти",
   "rundom_page_button": "Випадкова сторінка",
-  "first_page_button": "Перша сторінка",
-  "last_page_button": "Остання сторінка",
+  "first_page_button": "Перша сторінка книги",
+  "last_page_button": "Остання сторінка книги",
   "first_match_button": "Перший збіг",
   "last_match_button": "Останній збіг",
-  "clear_match_button": "Чистий збіг"
+  "clear_match_button": "Чистий збіг",
+  "found_pages": "знайдено $text сторінок",
+  "some_links": "Деякі посилання"
 }

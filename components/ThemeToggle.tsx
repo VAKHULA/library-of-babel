@@ -20,18 +20,23 @@ export const ThemeToggle = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   const html = document.querySelector('html')
-  //   html?.setAttribute("data-theme", isThemeDark ? 'dark' : 'light')
-  //   localStorage.setItem('prefers-color-scheme',  isThemeDark ? 'dark' : 'light')
-  // }, [isThemeDark])
+  useEffect(() => {
+    const html = document.querySelector('html');
+    html?.setAttribute('data-theme', isThemeDark ? 'dark' : 'light');
+  }, [isThemeDark]);
 
   return (
     <button
       className='outline'
       aria-label='Theme switcher'
       onClick={() => {
-        setIsThemeDark((isDark) => !isDark);
+        setIsThemeDark((isDark) => {
+          localStorage.setItem(
+            'prefers-color-scheme',
+            !isDark ? 'dark' : 'light',
+          );
+          return !isDark;
+        });
       }}
     >
       <svg

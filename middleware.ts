@@ -1,9 +1,9 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-import { match as matchLocale } from "@formatjs/intl-localematcher";
-import Negotiator from "negotiator"
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import { match as matchLocale } from '@formatjs/intl-localematcher';
+import Negotiator from 'negotiator';
 
-import { i18n } from "./i18n/i18n-config";
+import { i18n } from './i18n/i18n-config';
 
 function getLocale(request: NextRequest): string | undefined {
   // Negotiator expects plain object so we need to transform headers
@@ -40,7 +40,7 @@ export function middleware(request: NextRequest) {
     // The new URL is now /en-US/products
     return NextResponse.redirect(
       new URL(
-        `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
+        `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,
         request.url,
       ),
     );
@@ -48,5 +48,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/"],
+  matcher: ['/'],
 };

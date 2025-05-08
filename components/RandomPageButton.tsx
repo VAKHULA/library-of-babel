@@ -1,20 +1,32 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
-import { getRandomBigInt } from '@/utils/getRandomBigInt'
+import { getRandomBigInt } from '@/utils/getRandomBigInt';
 
-export const RandomPageButton = ({lang, randomPageLabel }: {lang: string, randomPageLabel: string }) => {
-  const [isClient, setIsClient] = useState(false)
+export const RandomPageButton = ({
+  lang,
+  randomPageLabel,
+}: {
+  lang: string;
+  randomPageLabel: string;
+}) => {
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true)
-  }, [])
+    setIsClient(true);
+  }, []);
 
   return (
-    <Link role='button' className='outline' href={isClient ? `/${lang}/page?page=${ getRandomBigInt(6000).toString()}` : ''}>
+    <Link
+      role='button'
+      className='outline'
+      href={
+        isClient ? `/${lang}/page?page=${getRandomBigInt(6000).toString()}` : ''
+      }
+    >
       {randomPageLabel}
     </Link>
-  )
-}
+  );
+};

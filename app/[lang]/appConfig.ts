@@ -3,5 +3,5 @@ export const appConfig = {
   characterSet: {
     en: 'abcdefghijklmnopqrstuvwxyz ,.',
     ua: 'абвгґдеєжзиіїйклмнопрстуфхцчшщьюя ,.',
-  }
-} as const
+  },
+} as const;

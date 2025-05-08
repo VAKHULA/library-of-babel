@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write .",
+    "stylelint": "stylelint --fix --allow-empty-input \"**/*.{css,scss}\""
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.6.1",
@@ -25,7 +27,11 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
+    "prettier": "^3.5.3",
     "sass": "^1.87.0",
+    "stylelint": "^16.19.1",
+    "stylelint-config-prettier-scss": "^1.0.0",
+    "stylelint-config-standard-scss": "^14.0.0",
     "typescript": "^5"
   }
 }

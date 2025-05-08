@@ -1,9 +1,9 @@
 export const getRandomBigInt = (length = 1) => {
-    let result = ''
+  let result = '';
 
-    for(let i = 0; i < length; i++){
-      result += `${Math.floor(Math.random() * 10)}`
-    }
+  for (let i = 0; i < length; i++) {
+    result += `${Math.floor(Math.random() * 10)}`;
+  }
 
-    return BigInt(result)
-}
+  return BigInt(result);
+};

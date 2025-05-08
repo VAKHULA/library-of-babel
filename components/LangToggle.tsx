@@ -2,7 +2,7 @@
 
 import { usePathname, useParams } from "next/navigation";
 import Link from "next/link";
-import { type Locale } from "@/i18n-config";
+import { type Locale } from "@/i18n/i18n-config";
 
 export const LangToggle = () => {
   const pathname = usePathname()

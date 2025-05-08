@@ -9,7 +9,7 @@ import { clearString } from '@/utils/clearString'
 import { getNumberOfPermutations } from '@/utils/getNumberOfPermutations'
 import { formatBigIntToShortHTML } from '@/utils/formatBigIntToShortHTML'
 import { search } from '@/utils/converter'
-import { appConfig } from '@/appConfig'
+import { appConfig } from '@/app/[lang]/appConfig'
 
 export const SearchField = ({
   initialValue = '',

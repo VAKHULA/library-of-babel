@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import "@picocss/pico/css/pico.blue.min.css"
-import { Locale } from "@/i18n-config"
+import { Locale } from "@/i18n/i18n-config"
 import "./globals.scss";
 
 export const metadata: Metadata = {

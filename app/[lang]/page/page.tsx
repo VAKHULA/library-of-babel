@@ -6,7 +6,7 @@ import { Paginator } from '@/components/Paginator'
 import { RandomPageButton } from '@/components/RandomPageButton'
 import { generatePage } from '@/utils/converter'
 import { getDictionary } from "@/get-dictionary"
-import { appConfig } from "@/appConfig"
+import { appConfig } from "@/app/[lang]/appConfig"
 
 type Params = Promise<{
   lang: 'en' | 'ua'

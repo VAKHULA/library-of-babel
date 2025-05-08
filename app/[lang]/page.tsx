@@ -3,8 +3,8 @@ import { SearchField } from '@/components/SearchField'
 import { GoToPageInput } from '@/components/GoToPageInput'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { LangToggle } from '@/components/LangToggle'
-import { appConfig } from "@/appConfig"
-import { Locale } from "@/i18n-config"
+import { appConfig } from "@/app/[lang]/appConfig"
+import { Locale } from "@/i18n/i18n-config"
 import { getDictionary } from "@/get-dictionary"
 
 export default async function HomePage(props: {

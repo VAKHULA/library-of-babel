@@ -1,1 +1,2 @@
-export const reverse = (str: string):string => Array.from(str).reverse().join('');
+export const reverse = (str: string): string =>
+  Array.from(str).reverse().join('');

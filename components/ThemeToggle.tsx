@@ -28,8 +28,7 @@ export const ThemeToggle = () => {
     html?.setAttribute('data-theme', isThemeDark ? 'dark' : 'light');
   }, [isThemeDark]);
 
-  return (
-    isClient ?
+  return isClient ? (
     <button
       className='outline'
       aria-label='Theme switcher'
@@ -60,6 +59,5 @@ export const ThemeToggle = () => {
         </g>
       </svg>
     </button>
-    : null
-  );
+  ) : null;
 };

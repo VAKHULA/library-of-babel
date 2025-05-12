@@ -5,16 +5,18 @@ export const generatePage = (
 ): string => {
   let state = BigInt(page);
   let output = '';
-  let isValuable = true
+  let isValuable = true;
 
   const length = BigInt(characterSet.length);
 
   for (let i = 0; i < numCharsPerPage; i++) {
     const operation: bigint = state % length;
 
-    output =isValuable ?  output + characterSet[Number(operation.toString())] : characterSet[Number(operation.toString())] + output
+    output = isValuable
+      ? output + characterSet[Number(operation.toString())]
+      : characterSet[Number(operation.toString())] + output;
     state = state / length; // it should be Math.floor(state / length) if number
-    isValuable = state === BigInt(0)
+    isValuable = state === BigInt(0);
   }
 
   return output;

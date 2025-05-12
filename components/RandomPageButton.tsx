@@ -18,8 +18,7 @@ export const RandomPageButton = ({
     setIsClient(true);
   }, []);
 
-  return (
-    isClient ?
+  return isClient ? (
     <Link
       role='button'
       className='outline'
@@ -27,7 +26,5 @@ export const RandomPageButton = ({
     >
       {randomPageLabel}
     </Link>
-    :
-    null
-  );
+  ) : null;
 };

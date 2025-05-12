@@ -19,14 +19,15 @@ export const RandomPageButton = ({
   }, []);
 
   return (
+    isClient ?
     <Link
       role='button'
       className='outline'
-      href={
-        isClient ? `/${lang}/page?page=${getRandomBigInt(4679).toString()}` : ''
-      }
+      href={`/${lang}/page?page=${getRandomBigInt(4679).toString()}`}
     >
       {randomPageLabel}
     </Link>
+    :
+    null
   );
 };

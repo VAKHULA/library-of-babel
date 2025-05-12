@@ -3,9 +3,12 @@
 import { useEffect, useState } from 'react';
 
 export const ThemeToggle = () => {
+  const [isClient, setIsClient] = useState(false);
   const [isThemeDark, setIsThemeDark] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
+
     if (localStorage.getItem('prefers-color-scheme')) {
       setIsThemeDark(localStorage.getItem('prefers-color-scheme') === 'dark');
     } else if (
@@ -26,6 +29,7 @@ export const ThemeToggle = () => {
   }, [isThemeDark]);
 
   return (
+    isClient ?
     <button
       className='outline'
       aria-label='Theme switcher'
@@ -56,5 +60,6 @@ export const ThemeToggle = () => {
         </g>
       </svg>
     </button>
+    : null
   );
 };

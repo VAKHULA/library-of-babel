@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import { clearString } from '@/utils/clearString';
@@ -17,9 +18,9 @@ export const SearchField = ({
 }: {
   initialValue: string;
   lang: 'en' | 'ua';
-}) => {
+  }) => {
+  const router = useRouter()
   const [searchValue, setSearch] = useState<string>(initialValue);
-  console.log(appConfig.pageLength - searchValue.length);
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
@@ -57,6 +58,13 @@ export const SearchField = ({
               e.target.value.toLowerCase(),
             ).slice(0, appConfig.pageLength);
             setSearch(value);
+          }}
+          onKeyUp={(e) => {
+            if (e.keyCode === 13) {
+              router.push(searchValue
+              ? `/${lang}/page?page=${lastMatch}&search=${encodeURIComponent(searchValue)}`
+              : `/${lang}/page?page=0`)
+            }
           }}
         />
         <div className='search-field__buttons'>

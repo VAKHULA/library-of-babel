@@ -22,7 +22,7 @@ export const RandomPageButton = ({
     <Link
       role='button'
       className='outline'
-      href={`/${lang}/page?page=${getRandomBigInt(4679).toString()}`}
+      href={`/${lang}/page?page=${getRandomBigInt(Math.abs(Math.random() * 4679)).toString()}`}
     >
       {randomPageLabel}
     </Link>
